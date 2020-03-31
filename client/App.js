@@ -2,9 +2,10 @@ import React from "react";
 import Categories from "./components/Categories";
 import Signin from "./components/Signin";
 import Shop from "./components/Shop";
-import Album from "./components/Album";
+import Album from "./components/Album/Album";
 import Creator from "./components/Creator";
 import Materials from "./components/Materials";
+import SizeChart from "./components/SizeChart";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -13,10 +14,11 @@ export default class App extends React.Component {
       shop: true,
       album: false,
       materials: false,
+      Sizing: false,
       creator: false,
       previousTab: 0,
       tabSelectIndex: 0,
-      tabArray: ["Shop", "Materials", "Size Chart", "Album", "Creator"]
+      tabArray: ["Shop", "Materials", "Sizing", "Album", "Creator"]
     };
   }
 
@@ -32,12 +34,13 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container">
         <Signin />
         <Categories
           tabs={this.state.tabArray}
           shop={this.shopClick.bind(this)}
         />
+        <SizeChart show={this.state.sizing} />
         <Shop show={this.state.shop} />
         <Album show={this.state.album} />
         <Creator show={this.state.creator} />
