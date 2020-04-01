@@ -8,7 +8,7 @@ const SizeChart = ({ show }) => {
           <div className="col-lg-12">
             <img
               className="size-image all-images"
-              src="../../images/BandanaSize.png"
+              src="http://localhost:3000/images/BandanaSize.png"
             ></img>
           </div>
         </div>
