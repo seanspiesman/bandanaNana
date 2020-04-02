@@ -1,29 +1,29 @@
 import React from "react";
+import SignedIn from "./components/SignedIn";
 
-const Signin = props => {
-  return (
-    <nav className="navbar navbar-inverse">
-      <div className="container-fluid">
-        <div className="navbar-header">
-          <a style={{ fontSize: "30px" }} className="navbar-brand" href="#">
-            Bandana Nana
-          </a>
+class Signin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showLoginModal: false,
+      showSignupModal: false,
+      LoggedIn: true
+    };
+  }
+  render() {
+    return (
+      <nav className="navbar navbar-inverse">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <a style={{ fontSize: "30px" }} className="navbar-brand" href="#">
+              Bandana Nana
+            </a>
+          </div>
+          <SignedIn LoggedIn={this.state.LoggedIn} />
         </div>
-        <ul className="nav navbar-nav navbar-right">
-          <li>
-            <a href="#">
-              <span className="glyphicon glyphicon-user"></span> Sign Up
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span className="glyphicon glyphicon-log-in"></span> Login
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
-};
+      </nav>
+    );
+  }
+}
 
 export default Signin;

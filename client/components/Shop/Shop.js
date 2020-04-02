@@ -57,6 +57,9 @@ class Shop extends React.Component {
     if (this.props.show) {
       return (
         <>
+          <div className="row">
+            <p> Hi, welcome to our order page! </p>
+          </div>
           <ShopItem
             genderInfo={this.genderInfo.bind(this)}
             styleInfo={this.styleInfo.bind(this)}
