@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShopModal = ({ show, close }) => {
+const ShopModal = ({ show, close, onSubmit, modalInfo }) => {
   if (show) {
     return (
       <div className="shop-modal">
@@ -24,9 +24,17 @@ const ShopModal = ({ show, close }) => {
                     type="text"
                     className="form-control"
                     placeholder="Add your notes here!"
+                    onChange={modalInfo}
                   />
                   <span className="input-group-btn">
-                    <button className="btn btn-default" type="button">
+                    <button
+                      className="btn btn-default"
+                      type="button"
+                      onClick={() => {
+                        onSubmit();
+                        close();
+                      }}
+                    >
                       Submit!
                     </button>
                   </span>

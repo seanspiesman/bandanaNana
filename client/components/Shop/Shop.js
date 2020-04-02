@@ -7,7 +7,12 @@ class Shop extends React.Component {
     super(props);
 
     this.state = {
-      showDetails: false
+      showDetails: false,
+      allInfo: [],
+      genderInfo: "",
+      styleInfo: "",
+      sizeInfo: "",
+      modalTemp: ""
     };
   }
 
@@ -19,14 +24,49 @@ class Shop extends React.Component {
     this.setState({ showDetails: false });
   }
 
+  modalInfo(info) {
+    this.setState({ modalTemp: info.target.value });
+  }
+
+  genderInfo(info) {
+    this.setState({ genderInfo: info.target.value });
+  }
+
+  styleInfo(info) {
+    this.setState({ styleInfo: info.target.value });
+  }
+
+  sizeInfo(info) {
+    this.setState({ sizeInfo: info.target.value });
+  }
+
+  onSubmit() {
+    var info = [];
+    info.push(
+      this.state.genderInfo,
+      this.state.styleInfo,
+      this.state.sizeInfo,
+      this.state.modalTemp
+    );
+    this.setState({ allInfo: info }, () => {
+      this.props.submit(this.state.allInfo);
+    });
+  }
+
   render() {
     if (this.props.show) {
       return (
         <>
-          <ShopItem />
+          <ShopItem
+            genderInfo={this.genderInfo.bind(this)}
+            styleInfo={this.styleInfo.bind(this)}
+            sizeInfo={this.sizeInfo.bind(this)}
+          />
           <ShopModal
             show={this.state.showDetails}
             close={this.closeShopModal.bind(this)}
+            modalInfo={this.modalInfo.bind(this)}
+            onSubmit={this.onSubmit.bind(this)}
           />
           <div className="row text-center">
             <button

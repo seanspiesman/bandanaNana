@@ -18,7 +18,8 @@ export default class App extends React.Component {
       creator: false,
       previousTab: 0,
       tabSelectIndex: 0,
-      tabArray: ["Shop", "Materials", "Queue", "Album", "Creator"]
+      tabArray: ["Shop", "Materials", "Queue", "Album", "Creator"],
+      queueInfo: []
     };
   }
 
@@ -32,6 +33,10 @@ export default class App extends React.Component {
     });
   }
 
+  addToQueue(item) {
+    console.log(item);
+  }
+
   render() {
     return (
       <div className="container">
@@ -41,7 +46,7 @@ export default class App extends React.Component {
           shop={this.shopClick.bind(this)}
         />
         <Queue show={this.state.queue} />
-        <Shop show={this.state.shop} />
+        <Shop show={this.state.shop} submit={this.addToQueue.bind(this)} />
         <Album show={this.state.album} />
         <Creator show={this.state.creator} />
         <Materials show={this.state.materials} />
