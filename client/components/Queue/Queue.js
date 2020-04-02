@@ -1,15 +1,21 @@
 import React from "react";
+import YourQueue from "./components/YourQueue";
 
-const Queue = ({ show }) => {
+const Queue = ({ show, list, remove }) => {
   if (show) {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-lg-12">
-            <img
-              className="size-image all-images"
-              src="http://localhost:3000/images/BandanaSize.png"
-            ></img>
+          <div className="col-md-6 queue-font">
+            <h2>Your Queue</h2>
+            <ul>
+              {list.map((item, index) => {
+                return <YourQueue item={item} key={index} index={index} remove={remove} />;
+              })}
+            </ul>
+          </div>
+          <div className="col-md-6 queue-font">
+            <h2>Build Queue</h2>
           </div>
         </div>
       </div>

@@ -1,12 +1,12 @@
 import React from "react";
 
-const Categories = ({ tabs, shop }) => {
+const Categories = ({ tabs, tab }) => {
   return (
     <ul className="nav nav-tabs nav-justified">
       <li className="active">
         <a
           onClick={() => {
-            shop(0);
+            tab(0);
           }}
           data-toggle="tab"
           href="#home"
@@ -20,7 +20,7 @@ const Categories = ({ tabs, shop }) => {
             <li key={key.toString()}>
               <a
                 onClick={() => {
-                  shop(key);
+                  tab(key);
                 }}
                 data-toggle="tab"
                 href="#menu1"

@@ -23,7 +23,7 @@ export default class App extends React.Component {
     };
   }
 
-  shopClick(index) {
+  tabClick(index) {
     var prev = this.state.tabArray[this.state.previousTab];
     var current = this.state.tabArray[index];
     this.setState({
@@ -34,18 +34,26 @@ export default class App extends React.Component {
   }
 
   addToQueue(item) {
-    console.log(item);
+    this.setState({ queueInfo: [...this.state.queueInfo, [...item]] });
+  }
+
+  removeFromQueue(index) {
+    console.log(index);
+    var newQueue = this.state.queueInfo.slice();
+    newQueue.splice(index, 1);
+    this.setState({ queueInfo: newQueue });
   }
 
   render() {
     return (
       <div className="container">
         <Signin />
-        <Categories
-          tabs={this.state.tabArray}
-          shop={this.shopClick.bind(this)}
+        <Categories tabs={this.state.tabArray} tab={this.tabClick.bind(this)} />
+        <Queue
+          show={this.state.queue}
+          list={this.state.queueInfo}
+          remove={this.removeFromQueue.bind(this)}
         />
-        <Queue show={this.state.queue} />
         <Shop show={this.state.shop} submit={this.addToQueue.bind(this)} />
         <Album show={this.state.album} />
         <Creator show={this.state.creator} />
