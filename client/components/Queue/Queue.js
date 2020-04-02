@@ -1,6 +1,6 @@
 import React from "react";
 
-const SizeChart = ({ show }) => {
+const Queue = ({ show }) => {
   if (show) {
     return (
       <div className="container">
@@ -19,4 +19,4 @@ const SizeChart = ({ show }) => {
   }
 };
 
-export default SizeChart;
+export default Queue;

@@ -1,7 +1,7 @@
 import React from "react";
 import AlbumComponents from "./AlbumComponents/AlbumComponents";
 import axios from "axios";
-import Modal from "./AlbumComponents/Modal";
+import Modal from "./AlbumComponents/Album-Modal";
 
 class Album extends React.Component {
   constructor(props) {

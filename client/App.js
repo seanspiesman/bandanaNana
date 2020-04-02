@@ -1,11 +1,11 @@
 import React from "react";
 import Categories from "./components/Categories";
-import Signin from "./components/Signin";
-import Shop from "./components/Shop";
+import Signin from "./components/Signin/Signin";
+import Shop from "./components/Shop/Shop";
 import Album from "./components/Album/Album";
-import Creator from "./components/Creator";
-import Materials from "./components/Materials";
-import SizeChart from "./components/SizeChart";
+import Creator from "./components/Creator/Creator";
+import Materials from "./components/Materials/Materials";
+import Queue from "./components/Queue/Queue";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -14,11 +14,11 @@ export default class App extends React.Component {
       shop: true,
       album: false,
       materials: false,
-      Sizing: false,
+      queue: false,
       creator: false,
       previousTab: 0,
       tabSelectIndex: 0,
-      tabArray: ["Shop", "Materials", "Sizing", "Album", "Creator"]
+      tabArray: ["Shop", "Materials", "Queue", "Album", "Creator"]
     };
   }
 
@@ -40,7 +40,7 @@ export default class App extends React.Component {
           tabs={this.state.tabArray}
           shop={this.shopClick.bind(this)}
         />
-        <SizeChart show={this.state.sizing} />
+        <Queue show={this.state.queue} />
         <Shop show={this.state.shop} />
         <Album show={this.state.album} />
         <Creator show={this.state.creator} />

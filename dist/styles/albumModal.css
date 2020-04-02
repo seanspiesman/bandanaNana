@@ -1,4 +1,4 @@
-.sean-modal {
+.album-modal {
   z-index: 1000;
   position: fixed;
   top: 0;
@@ -11,30 +11,32 @@
   overflow: scroll;
 }
 
-.sean-modal-main {
+.album-modal-main {
   position: relative;
   z-index: 1000;
-  margin-left: 10%;
-  width: 80%;
-  margin-right: 10%;
+  margin-left: auto;
+  width: 70%;
+  max-height: 90vw;
+  margin-right: auto;
   opacity: 1;
   text-align: center;
 }
 
-.sean-modal-image {
-  width: 70%;
+.album-modal-image {
+  width: 90%;
   border-radius: 20px;
   border: 25px solid white;
+  /* box-shadow: 0px 0px 10px 20px rgb(255, 255, 255); */
 }
 
-.sean-close-span {
+.album-close-span {
   display: inline-block;
 }
 
-.sean-close {
+.album-close {
   overflow: visible;
-  top: 12px;
-  right: 12px;
+  top: 40px;
+  right: 85px;
   margin: 0 auto;
   position: absolute;
   display: inline-block;
@@ -45,6 +47,6 @@
   background-color: rgb(254, 255, 254);
 }
 
-.sean-close:hover {
+.album-close:hover {
   cursor: pointer;
 }
