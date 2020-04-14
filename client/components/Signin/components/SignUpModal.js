@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShopModal = ({ show, close, onSubmit, modalInfo }) => {
+const SignInModal = ({ show, modalImage, close }) => {
   if (show) {
     return (
       <div className="shop-modal">
@@ -13,7 +13,7 @@ const ShopModal = ({ show, close, onSubmit, modalInfo }) => {
           ></span>
           <div className="shop-modal-background">
             <div className="row ">
-              <div className="shop-col-md-3 info-align">
+              <div className="col-md-3 info-align">
                 <h3>Additional Info</h3>
               </div>
             </div>
@@ -23,8 +23,8 @@ const ShopModal = ({ show, close, onSubmit, modalInfo }) => {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Add Patter/Color"
-                    onChange={modalInfo}
+                    placeholder="Add your notes here!"
+                    // onChange={modalInfo}
                   />
                   <span className="input-group-btn">
                     <button
@@ -49,5 +49,4 @@ const ShopModal = ({ show, close, onSubmit, modalInfo }) => {
     return null;
   }
 };
-
-export default ShopModal;
+export default SignInModal;

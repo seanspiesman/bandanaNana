@@ -11,15 +11,23 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      shop: true,
+      fosters: true,
+      shop: false,
       album: false,
       materials: false,
       queue: false,
       creator: false,
       previousTab: 0,
       tabSelectIndex: 0,
-      tabArray: ["Shop", "Materials", "Queue", "Album", "Creator"],
-      queueInfo: []
+      tabArray: [
+        "Current Fosters",
+        "Shop",
+        "Materials",
+        "Queue",
+        "Album",
+        "Creator",
+      ],
+      queueInfo: [],
     };
   }
 
@@ -29,7 +37,7 @@ export default class App extends React.Component {
     this.setState({
       [prev.toLowerCase()]: false,
       [current.toLowerCase()]: true,
-      previousTab: index
+      previousTab: index,
     });
   }
 
@@ -49,15 +57,15 @@ export default class App extends React.Component {
       <div className="container">
         <Signin />
         <Categories tabs={this.state.tabArray} tab={this.tabClick.bind(this)} />
+        <Shop show={this.state.shop} submit={this.addToQueue.bind(this)} />
+        <Materials show={this.state.materials} />
         <Queue
           show={this.state.queue}
           list={this.state.queueInfo}
           remove={this.removeFromQueue.bind(this)}
         />
-        <Shop show={this.state.shop} submit={this.addToQueue.bind(this)} />
         <Album show={this.state.album} />
         <Creator show={this.state.creator} />
-        <Materials show={this.state.materials} />
       </div>
     );
   }

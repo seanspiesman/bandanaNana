@@ -4,7 +4,7 @@ const ShopItems = ({ genderInfo, styleInfo, sizeInfo }) => {
   return (
     <div className="container">
       <div className="row" style={{ paddingTop: "10px" }}>
-        <div className="col-sm-4">
+        <div className="col-sm-4 shop-sm-col-4">
           <div className="form-group">
             <label htmlFor="sel1">Gender</label>
             <select className="form-control" id="sel1" onChange={genderInfo}>
@@ -14,7 +14,7 @@ const ShopItems = ({ genderInfo, styleInfo, sizeInfo }) => {
             </select>
           </div>
         </div>
-        <div className="col-sm-4">
+        <div className="col-sm-4 shop-sm-col-4">
           <div className="form-group">
             <label htmlFor="sel1">Style</label>
             <select className="form-control" id="sel1" onChange={styleInfo}>
@@ -24,7 +24,7 @@ const ShopItems = ({ genderInfo, styleInfo, sizeInfo }) => {
             </select>
           </div>
         </div>
-        <div className="col-sm-4">
+        <div className="col-sm-4 shop-sm-col-4">
           <div className="form-group">
             <label htmlFor="sel1">Size</label>
             <select className="form-control" id="sel1" onChange={sizeInfo}>

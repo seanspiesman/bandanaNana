@@ -50,3 +50,10 @@
 .album-close:hover {
   cursor: pointer;
 }
+
+
+.album-col-md-3 {
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-left: 0px;
+}

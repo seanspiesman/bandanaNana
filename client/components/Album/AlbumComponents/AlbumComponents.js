@@ -16,7 +16,7 @@ const AlbumComponents = ({ images, zoom }) => {
 
   return (
     <>
-      <div className="col-md-3">
+      <div className="col-md-3 album-col-md-3">
         {firstColumn.map((item, index) => {
           return (
             <Divider
@@ -28,7 +28,7 @@ const AlbumComponents = ({ images, zoom }) => {
           );
         })}
       </div>
-      <div className="col-md-3">
+      <div className="col-md-3 album-col-md-3">
         {secondColumn.map((item, index) => {
           return (
             <Divider
@@ -40,7 +40,7 @@ const AlbumComponents = ({ images, zoom }) => {
           );
         })}
       </div>
-      <div className="col-md-3">
+      <div className="col-md-3 album-col-md-3">
         {thirdColumn.map((item, index) => {
           return (
             <Divider
@@ -52,7 +52,7 @@ const AlbumComponents = ({ images, zoom }) => {
           );
         })}
       </div>
-      <div className="col-md-3">
+      <div className="col-md-3 album-col-md-3">
         {fourthColumn.map((item, index) => {
           return (
             <Divider
