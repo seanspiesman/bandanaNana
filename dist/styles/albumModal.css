@@ -26,7 +26,6 @@
   width: 90%;
   border-radius: 20px;
   border: 25px solid white;
-  /* box-shadow: 0px 0px 10px 20px rgb(255, 255, 255); */
 }
 
 .album-close-span {
@@ -51,9 +50,25 @@
   cursor: pointer;
 }
 
-
 .album-col-md-3 {
   padding-top: 10px;
   padding-right: 0px;
   padding-left: 0px;
+}
+
+.album-image-div {
+  padding-top: 10px;
+}
+
+.album-image {
+  margin-top: 10px;
+  float: left;
+  object-fit: contain;
+  border-radius: 20px;
+  width: 90%;
+  box-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+
+.album-image:hover {
+  cursor: zoom-in;
 }

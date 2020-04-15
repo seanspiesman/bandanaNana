@@ -4,43 +4,46 @@ const ShopModal = ({ show, close, onSubmit, modalInfo }) => {
   if (show) {
     return (
       <div className="shop-modal">
-        <div className="shop-modal-main">
+        <div className="shop-modal-main shop-modal-background">
+          <div className="row text-center">
+            <h3>Additional Information</h3>
+          </div>
           <span
-            className="shop-close-span shop-close glyphicon glyphicon-remove"
+            className="shop-close glyphicon glyphicon-remove text-right"
             onClick={() => {
               close();
             }}
           ></span>
-          <div className="shop-modal-background">
-            <div className="row ">
-              <div className="shop-col-md-3 info-align">
-                <h3>Additional Info</h3>
+          <div className="row" style={{ marginLeft: "40%" }}>
+            <div className="col-sm-4">
+              <div>
+                <input
+                  className="form-control"
+                  placeholder="Color/Pattern..."
+                  onChange={modalInfo}
+                />
               </div>
             </div>
-            <div className="row">
-              <div className="col-md-10" style={{ paddingLeft: "15%" }}>
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Add Patter/Color"
-                    onChange={modalInfo}
-                  />
-                  <span className="input-group-btn">
-                    <button
-                      className="btn btn-default"
-                      type="button"
-                      onClick={() => {
-                        onSubmit();
-                        close();
-                      }}
-                    >
-                      Submit!
-                    </button>
-                  </span>
-                </div>
-              </div>
-            </div>
+          </div>
+          <div className="row text-center" style={{ paddingTop: "20px" }}>
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                onSubmit();
+                close();
+              }}
+            >
+              Submit
+            </button>
+            {"             "}
+            <button
+              className="btn btn-default"
+              onClick={() => {
+                close();
+              }}
+            >
+              Cancel
+            </button>
           </div>
         </div>
       </div>

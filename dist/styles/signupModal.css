@@ -1,4 +1,4 @@
-.shop-modal {
+.signup-modal {
   z-index: 1000;
   position: fixed;
   top: 0;
@@ -11,7 +11,7 @@
   overflow: scroll;
 }
 
-.shop-modal-main {
+.signup-modal-main {
   position: relative;
   z-index: 1000;
   margin-left: auto;
@@ -20,19 +20,19 @@
   margin-right: auto;
   opacity: 1;
   text-align: center;
-  border: 2px solid black;
 }
 
-.shop-modal-background {
+.signup-modal-background {
   margin-top: 150px;
   background-color: white;
   border-radius: 30px;
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 40px;
+  border: 2px solid black;
 }
 
-.shop-close {
+.signup-close {
   font-size: 20px;
   top: 10%;
   right: 8%;
@@ -43,10 +43,18 @@
   background-color: rgb(254, 255, 254);
 }
 
-.shop-text-size {
+.signup-info-align {
+  margin-left: 40px;
+}
+
+.signup-close:hover {
+  cursor: pointer;
+}
+
+.signup-text-size {
   font-size: 20px;
 }
 
-.shop-close:hover {
-  cursor: pointer;
+.signup-input-pad {
+  padding: 2px;
 }

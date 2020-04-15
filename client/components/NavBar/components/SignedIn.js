@@ -1,7 +1,7 @@
 import React from "react";
 
-const SignedIn = ({ LoggedIn }) => {
-  if (LoggedIn) {
+const SignedIn = ({ loggedIn, signup, loginBtn, logout }) => {
+  if (loggedIn) {
     return (
       <ul className="nav navbar-nav navbar-right">
         <li>
@@ -10,7 +10,12 @@ const SignedIn = ({ LoggedIn }) => {
           </a>
         </li>
         <li>
-          <a href="#">
+          <a
+            onClick={() => {
+              logout();
+            }}
+            href="#"
+          >
             <span className="glyphicon glyphicon-log-out"></span> Login-Out
           </a>
         </li>
@@ -20,12 +25,22 @@ const SignedIn = ({ LoggedIn }) => {
     return (
       <ul className="nav navbar-nav navbar-right">
         <li>
-          <a href="#">
+          <a
+            onClick={() => {
+              signup();
+            }}
+            href="#"
+          >
             <span className="glyphicon glyphicon-user"></span> Sign Up
           </a>
         </li>
         <li>
-          <a href="#">
+          <a
+            onClick={() => {
+              loginBtn();
+            }}
+            href="#"
+          >
             <span className="glyphicon glyphicon-log-in"></span> Login
           </a>
         </li>

@@ -9,17 +9,17 @@ class Album extends React.Component {
     this.state = {
       imageArray: [],
       modalItem: "",
-      showModal: false
+      showModal: false,
     };
   }
 
   componentDidMount() {
     axios
       .get("/albumImages")
-      .then(response => {
+      .then((response) => {
         this.setState({ imageArray: response.data });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("Error");
       });
   }
@@ -33,7 +33,7 @@ class Album extends React.Component {
   render() {
     if (this.props.show) {
       return (
-        <div className="container">
+        <div style={{}}>
           <Modal
             modalImage={this.state.modalItem}
             show={this.state.showModal}

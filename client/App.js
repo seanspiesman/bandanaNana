@@ -1,20 +1,21 @@
 import React from "react";
 import Categories from "./components/Categories";
-import Signin from "./components/Signin/Signin";
+import NavBar from "./components/NavBar/Signin";
 import Shop from "./components/Shop/Shop";
 import Album from "./components/Album/Album";
 import Creator from "./components/Creator/Creator";
 import Materials from "./components/Materials/Materials";
 import Queue from "./components/Queue/Queue";
+import CurrentFosters from "./components/CurrentFosters/CurrentFosters";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fosters: true,
+      fosters: false,
       shop: false,
       album: false,
-      materials: false,
+      materials: true,
       queue: false,
       creator: false,
       previousTab: 0,
@@ -55,7 +56,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <Signin />
+        <NavBar />
         <Categories tabs={this.state.tabArray} tab={this.tabClick.bind(this)} />
         <Shop show={this.state.shop} submit={this.addToQueue.bind(this)} />
         <Materials show={this.state.materials} />

@@ -12,7 +12,7 @@ class Shop extends React.Component {
       genderInfo: "",
       styleInfo: "",
       sizeInfo: "",
-      modalTemp: ""
+      modalTemp: "",
     };
   }
 
@@ -57,9 +57,7 @@ class Shop extends React.Component {
     if (this.props.show) {
       return (
         <>
-          <div className="row">
-            <p> Hi, welcome to our order page! </p>
-          </div>
+          <div className="row"></div>
           <ShopItem
             genderInfo={this.genderInfo.bind(this)}
             styleInfo={this.styleInfo.bind(this)}

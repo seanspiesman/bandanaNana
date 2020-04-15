@@ -16,7 +16,7 @@ const AlbumComponents = ({ images, zoom }) => {
 
   return (
     <>
-      <div className="col-md-3 album-col-md-3">
+      <div className="col-md-3 album-col-md-3" style={{ paddingLeft: "15px" }}>
         {firstColumn.map((item, index) => {
           return (
             <Divider

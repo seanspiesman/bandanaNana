@@ -2,6 +2,10 @@
   margin-bottom: 0px;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 .imagetiles {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -22,22 +26,6 @@ html {
   padding: 10px;
 }
 
-.album-image {
-  object-fit: contain;
-  border-radius: 20px;
-  width: 87%;
-  box-shadow: 0px 0px 10px rgb(0, 0, 0);
-}
-
-.album-image:hover {
-  cursor: zoom-in;
-}
-
-.material-image {
-  float: left;
-  max-width: 90vw;
-}
-
 .size-image {
   object-fit: contain;
   max-width: 95%;
@@ -52,10 +40,6 @@ html {
   padding-top: 10px;
   padding-right: 0px;
   padding-left: 0px;
-}
-
-.album-image-div {
-  padding-top: 10px;
 }
 
 .shop-sm-col-4 {
