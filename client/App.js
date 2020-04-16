@@ -12,22 +12,15 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fosters: false,
+      fosters: true,
       shop: false,
       album: false,
-      materials: true,
+      materials: false,
       queue: false,
-      creator: false,
+      creators: false,
       previousTab: 0,
       tabSelectIndex: 0,
-      tabArray: [
-        "Current Fosters",
-        "Shop",
-        "Materials",
-        "Queue",
-        "Album",
-        "Creator",
-      ],
+      tabArray: ["Fosters", "Shop", "Materials", "Queue", "Album", "Creators"],
       queueInfo: [],
     };
   }
@@ -58,6 +51,7 @@ export default class App extends React.Component {
       <div className="container">
         <NavBar />
         <Categories tabs={this.state.tabArray} tab={this.tabClick.bind(this)} />
+        <CurrentFosters show={this.state.fosters} />
         <Shop show={this.state.shop} submit={this.addToQueue.bind(this)} />
         <Materials show={this.state.materials} />
         <Queue
@@ -66,7 +60,7 @@ export default class App extends React.Component {
           remove={this.removeFromQueue.bind(this)}
         />
         <Album show={this.state.album} />
-        <Creator show={this.state.creator} />
+        <Creator show={this.state.creators} />
       </div>
     );
   }

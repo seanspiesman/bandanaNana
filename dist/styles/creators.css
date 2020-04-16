@@ -1,26 +1,25 @@
-.material-img {
+.creators-img {
   width: 60%;
   border-radius: 10px;
 }
 
-.material-border {
+.creators-border {
   border: 3px solid black;
   border-radius: 10px;
   padding: 0px;
 }
 
-.material-image-border {
+.creators-image-border {
   box-shadow: 0px 0px 10px rgb(0, 0, 0);
   border-radius: 15px;
 }
 
-.material-padding-remove {
-  /* padding-left: 0px; */
+.creators-padding-remove {
   height: 500px;
   display: flex;
 }
 
-.material-button-left {
+.creators-button-left {
   position: absolute;
   top: 47%;
   left: 3%;
@@ -28,7 +27,7 @@
   font-weight: bold;
 }
 
-.material-button-right {
+.creators-button-right {
   position: absolute;
   top: 47%;
   right: 5%;
@@ -40,8 +39,17 @@
   cursor: pointer;
 }
 
-.material-main-image {
+.creators-main-image {
   max-width: 80%;
   max-height: 90%;
   margin: auto;
+}
+
+.creators-hsize {
+  font-weight: bold;
+}
+
+.creators-psize {
+  font-size: 16px;
+  font-weight: bold;
 }

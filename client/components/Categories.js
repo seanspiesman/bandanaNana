@@ -7,16 +7,15 @@ const Categories = ({ tabs, tab }) => {
         <a
           onClick={() => {
             tab(0);
-          }
-        }
+          }}
           data-toggle="tab"
           href="#home"
         >
-          Current Fosters
+          Fosters
         </a>
       </li>
       {tabs.map((item, key) => {
-        if (item !== "Current Fosters") {
+        if (item !== "Fosters") {
           return (
             <li key={key.toString()}>
               <a
