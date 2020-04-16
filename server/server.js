@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const cors = require("cors");
 const path = require("path");
-const { db, getAllItems } = require("./db");
+const { getAlbumImages, fosterInfo } = require("./db");
 
 app.use(cors());
 app.use(express.json());
@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../dist")));
 
 app.get("/albumImages", (req, res) => {
-  getAllItems((err, results) => {
+  getAlbumImages((err, results) => {
     if (err) console.log(err);
     else {
       var imageArr = [];
@@ -19,6 +19,16 @@ app.get("/albumImages", (req, res) => {
         imageArr.push(results[i].image);
       }
       res.send(imageArr);
+    }
+  });
+});
+
+app.get("/fosterinfo", (req, res) => {
+  fosterInfo((err, results) => {
+    if (err) console.log(err);
+    else {
+      res.send(results);
+      console.log(results[0].name);
     }
   });
 });
