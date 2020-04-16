@@ -1,19 +1,19 @@
 import React from "react";
 import Axios from "axios";
-import FosterDetails from "./CFComponents/Details";
+import Details from "../Details";
 
 class CurrentFosters extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fosters: [],
+      creators: [],
     };
   }
 
   componentDidMount() {
     Axios.get("/fosterinfo")
       .then((results) => {
-        this.setState({ fosters: results.data });
+        this.setState({ creators: results.data });
       })
       .catch((err) => {
         console.log("error");
@@ -24,8 +24,8 @@ class CurrentFosters extends React.Component {
     if (this.props.show) {
       return (
         <>
-          {this.state.fosters.map((info, index) => {
-            return <FosterDetails foster={info} key={index} index={index} />;
+          {this.state.creators.map((info, index) => {
+            return <Details details={info} key={index} index={index} />;
           })}
         </>
       );

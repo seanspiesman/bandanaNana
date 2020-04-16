@@ -22,6 +22,16 @@ const getAlbumImages = (callback) => {
   });
 };
 
+const creatorInfo = (callback) => {
+  db.query(`Select * from creatorinfo`, (err, results) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
 const fosterInfo = (callback) => {
   db.query(`Select * from fosterinfo`, (err, results) => {
     if (err) {
@@ -32,4 +42,4 @@ const fosterInfo = (callback) => {
   });
 };
 
-module.exports = { db, getAlbumImages, fosterInfo };
+module.exports = { creatorInfo, getAlbumImages, fosterInfo };

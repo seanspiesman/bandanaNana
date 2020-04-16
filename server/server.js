@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const cors = require("cors");
 const path = require("path");
-const { getAlbumImages, fosterInfo } = require("./db");
+const { getAlbumImages, creatorInfo, fosterInfo } = require("./db");
 
 app.use(cors());
 app.use(express.json());
@@ -23,12 +23,20 @@ app.get("/albumImages", (req, res) => {
   });
 });
 
+app.get("/creatorinfo", (req, res) => {
+  creatorInfo((err, results) => {
+    if (err) console.log(err);
+    else {
+      res.send(results);
+    }
+  });
+});
+
 app.get("/fosterinfo", (req, res) => {
   fosterInfo((err, results) => {
     if (err) console.log(err);
     else {
       res.send(results);
-      console.log(results[0].name);
     }
   });
 });
