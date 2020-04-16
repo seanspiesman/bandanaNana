@@ -2,6 +2,7 @@ import React from "react";
 import SignedIn from "./components/SignedIn";
 import SignUp from "./components/SignUpModal";
 import Login from "./components/LoginModal";
+import Axios from "axios";
 
 class Signin extends React.Component {
   constructor(props) {
@@ -9,9 +10,37 @@ class Signin extends React.Component {
     this.state = {
       showLoginModal: false,
       showSignUpModal: false,
-      LoggedIn: true,
-      userInfo: [],
+      LoggedIn: false,
+      username: "",
+      password: "",
+      passwordConfirm: "",
     };
+  }
+
+  User(username) {
+    this.setState({ username: username.target.value });
+  }
+
+  Pass(password) {
+    this.setState({ password: password.target.value });
+  }
+  PassCon(confirm) {
+    this.setState({ passwordConfirm: confirm.target.value });
+  }
+
+  onSubmit() {
+    if (this.state.passwordConfirm.length !== 0) {
+      if (this.state.password !== this.state.passwordConfirm) {
+        alert("Your Passwords do not match");
+      } else {
+        Axios.post("/addUser/user", {
+          username: this.state.username,
+          password: this.state.password,
+        }).then;
+        console.log("Account Created"); 
+      }
+    } else {
+    }
   }
 
   closeLoginModal() {
@@ -54,10 +83,17 @@ class Signin extends React.Component {
           </div>
         </nav>
         <SignUp
+          Submit={this.onSubmit.bind(this)}
+          readUser={this.User.bind(this)}
+          readPass={this.Pass.bind(this)}
+          passConfirm={this.PassCon.bind(this)}
           show={this.state.showSignUpModal}
           close={this.closeSignUpModal.bind(this)}
         />
         <Login
+          // onSubmit={}
+          readUser={this.User.bind(this)}
+          readPass={this.Pass.bind(this)}
           show={this.state.showLoginModal}
           close={this.closeLoginModal.bind(this)}
         />

@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const cors = require("cors");
 const path = require("path");
-const { getAlbumImages, creatorInfo, fosterInfo } = require("./db");
+const { getAlbumImages, creatorInfo, fosterInfo, newUser } = require("./db");
 
 app.use(cors());
 app.use(express.json());
@@ -34,6 +34,16 @@ app.get("/creatorinfo", (req, res) => {
 
 app.get("/fosterinfo", (req, res) => {
   fosterInfo((err, results) => {
+    if (err) console.log(err);
+    else {
+      res.send(results);
+    }
+  });
+});
+
+app.post("/adduser/:id", (req, res) => {
+  console.log(req.body);
+  newUser(req.body.username, req.body.password, (err, results) => {
     if (err) console.log(err);
     else {
       res.send(results);

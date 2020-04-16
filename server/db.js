@@ -42,4 +42,18 @@ const fosterInfo = (callback) => {
   });
 };
 
-module.exports = { creatorInfo, getAlbumImages, fosterInfo };
+const newUser = (username, password, callback) => {
+  db.query(
+    `Insert into users (username, password) values (?, ?) `,
+    [username, password],
+    (err, results) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
+
+module.exports = { creatorInfo, getAlbumImages, fosterInfo, newUser };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const LoginModal = ({ show, close, userInfo }) => {
+const LoginModal = ({ show, close, readUser, readPass }) => {
   if (show) {
     return (
       <div className="signup-modal">
@@ -21,6 +21,7 @@ const LoginModal = ({ show, close, userInfo }) => {
             </div>
             <div className="col-xs-3 signup-input-pad text-left">
               <input
+                onChange={readUser}
                 className="form-control"
                 placeholder="Type username here..."
               />
@@ -33,6 +34,7 @@ const LoginModal = ({ show, close, userInfo }) => {
             </div>
             <div className="col-xs-3 signup-input-pad text-left">
               <input
+                onChange={readPass}
                 className="form-control"
                 placeholder="Type username here..."
               />
@@ -40,7 +42,7 @@ const LoginModal = ({ show, close, userInfo }) => {
           </div>
           <div className="row text-center" style={{ paddingTop: "20px" }}>
             <button className="btn  btn-primary">Submit</button>
-            {"             "}
+            {"            "}
             <button
               className="btn btn-default"
               onClick={() => {
