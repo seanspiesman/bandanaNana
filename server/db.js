@@ -124,7 +124,7 @@ const totalQueue = (callback) => {
 
 const BuildQueue = (user, queue, callback) => {
   db.query(
-    "Insert into buildqueue (username, item) values (?, ?)",
+    "Insert into buildqueue (name, queue) values (?, ?)",
     [user, queue],
     (err, results) => {
       if (err) {

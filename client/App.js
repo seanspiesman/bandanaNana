@@ -23,7 +23,7 @@ export default class App extends React.Component {
       tabSelectIndex: 0,
       tabArray: ["Fosters", "Shop", "Materials", "Queue", "Album", "Creators"],
       queueInfo: [],
-      username: "admin",
+      username: "",
       loggedIn: false,
       buildQueue: [],
     };
