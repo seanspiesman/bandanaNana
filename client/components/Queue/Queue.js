@@ -1,18 +1,70 @@
 import React from "react";
 import YourQueue from "./components/YourQueue";
 import Axios from "axios";
+import TotalQueue from "./components/requestQueue";
+import BuildQueue from "./components/BuildQueue";
 
 class Queue extends React.Component {
   constructor(props) {
-    // this.props.show, this.props.list, this.props.remove, user
     super(props);
     this.state = {
       totalQueue: [],
+      buildQueue: [],
+      changeHandler: 0,
     };
   }
 
+  componentDidUpdate() {
+    if (this.props.user === "admin") {
+      this.adminInfo();
+    }
+  }
+
   adminInfo() {
-    // Axios.get('/')
+    Axios.get("/allQueueItems").then((result) => {
+      var Qarray = [];
+      for (var i = 0; i < result.data.length; i++) {
+        var personObject = {};
+        var personQueue = [];
+        if (
+          result.data[i].queue !== null &&
+          result.data[i].queue.length !== 0
+        ) {
+          personQueue = JSON.parse(result.data[i].queue);
+          personObject.name = result.data[i].username;
+          personObject.queue = personQueue;
+        }
+        if (Object.keys(personObject).length !== 0) {
+          Qarray.push(personObject);
+        }
+      }
+      if (
+        this.state.totalQueue.length === 0 &&
+        this.state.buildQueue.length === 0 &&
+        this.state.changeHandler !== 1
+      ) {
+        this.setState({ totalQueue: Qarray, changeHandler: 1 });
+      }
+    });
+  }
+
+  removeFromRequests(index) {
+    var newQueue = this.state.totalQueue.slice();
+    newQueue.splice(index, 1);
+    this.setState({ totalQueue: newQueue });
+  }
+
+  addBuildQueue(index) {
+    var newState = this.state.buildQueue;
+    console.log(this.state.totalQueue[index]);
+    newState.push(this.state.totalQueue[index]);
+    this.setState({ buildQueue: newState }, () => {
+      this.removeFromRequests(index);
+    });
+  }
+
+  removeFromBuild(index) {
+    console.log(index);
   }
 
   render() {
@@ -23,13 +75,14 @@ class Queue extends React.Component {
             <div className="col-md-6 queue-font">
               <h2>Build Requests</h2>
               <ul>
-                {this.props.list.map((item, index) => {
+                {this.state.totalQueue.map((item, index) => {
                   return (
-                    <YourQueue
+                    <TotalQueue
                       item={item}
-                      key={index}
                       index={index}
-                      remove={this.props.remove}
+                      key={index}
+                      remove={this.removeFromRequests.bind(this)}
+                      add={this.addBuildQueue.bind(this)}
                     />
                   );
                 })}
@@ -37,6 +90,18 @@ class Queue extends React.Component {
             </div>
             <div className="col-md-6 queue-font">
               <h2>Build Queue</h2>
+              <ul>
+                {this.state.buildQueue.map((item, index) => {
+                  return (
+                    <BuildQueue
+                      item={item}
+                      index={index}
+                      key={index}
+                      remove={this.removeFromBuild.bind(this)}
+                    />
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </div>

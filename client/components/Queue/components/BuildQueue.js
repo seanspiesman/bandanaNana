@@ -1,12 +1,15 @@
 import React from "react";
 
-const TotalQueue = ({ item, index, remove, add }) => {
+const BuildQueue = ({ item, remove, index }) => {
+  console.log(item.queue);
+
   if (item.queue.length === 1) {
     return (
       <>
         <li>
-          <h2>{item.name}</h2>
+          <h3>{item.name}</h3>
           <p style={{ fontSize: "16px" }}>
+            {" "}
             {item.queue[0][2] +
               " " +
               item.queue[0][1].toLowerCase() +
@@ -21,15 +24,6 @@ const TotalQueue = ({ item, index, remove, add }) => {
               }}
             >
               Delete
-            </button>
-            {"   "}
-            <button
-              className="btn btn-sm"
-              onClick={() => {
-                add(index);
-              }}
-            >
-              Add
             </button>
           </p>
         </li>
@@ -66,14 +60,6 @@ const TotalQueue = ({ item, index, remove, add }) => {
               Delete
             </button>{" "}
             {"   "}
-            <button
-              className="btn btn-sm"
-              onClick={() => {
-                add(index);
-              }}
-            >
-              Add
-            </button>
           </p>
         </li>
       </>
@@ -118,14 +104,6 @@ const TotalQueue = ({ item, index, remove, add }) => {
               Delete
             </button>{" "}
             {"   "}
-            <button
-              className="btn btn-sm"
-              onClick={() => {
-                add(index);
-              }}
-            >
-              Add
-            </button>
           </p>
         </li>
       </>
@@ -133,4 +111,4 @@ const TotalQueue = ({ item, index, remove, add }) => {
   }
 };
 
-export default TotalQueue;
+export default BuildQueue;
