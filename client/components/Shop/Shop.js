@@ -82,7 +82,7 @@ class Shop extends React.Component {
             <div className="col-lg-12">
               <img
                 className="size-image all-images"
-                src="https://BandanaNana.us-east-1.elasticbeanstalk.com/images/BandanaSize.png"
+                src="http://BandanaNana.us-east-1.elasticbeanstalk.com/images/BandanaSize.png"
               ></img>
             </div>
           </div>
