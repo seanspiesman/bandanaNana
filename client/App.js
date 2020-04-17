@@ -42,7 +42,7 @@ export default class App extends React.Component {
   addToQueue(item) {
     if (this.state.username.length !== 0) {
       var newQueue = [...this.state.queueInfo, [...item]];
-      Axios.post("BandanaNana.us-east-1.elasticbeanstalk.com/placeInQueue", {
+      Axios.post("https://BandanaNana.us-east-1.elasticbeanstalk.com/placeInQueue", {
         username: this.state.username,
         queue: newQueue,
       })
@@ -57,7 +57,7 @@ export default class App extends React.Component {
   }
 
   loadQueue(username) {
-    Axios.get("BandanaNana.us-east-1.elasticbeanstalk.com/queueItems", {
+    Axios.get("https://BandanaNana.us-east-1.elasticbeanstalk.com/queueItems", {
       params: {
         id: username,
       },
@@ -69,14 +69,16 @@ export default class App extends React.Component {
   removeFromQueue(index) {
     var newQueue = this.state.queueInfo.slice();
     newQueue.splice(index, 1);
-    Axios.post("BandanaNana.us-east-1.elasticbeanstalk.com/placeInQueue", {
+    Axios.post("https://BandanaNana.us-east-1.elasticbeanstalk.com/placeInQueue", {
       username: this.state.username,
       queue: newQueue,
     })
       .then(() => {
         this.setState({ queueInfo: newQueue });
       })
-      .catch("error");
+      .catch(() => {
+        console.log("Error");
+      });
   }
 
   setUsername(username) {

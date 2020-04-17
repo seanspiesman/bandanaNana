@@ -33,14 +33,14 @@ class Signin extends React.Component {
       if (this.state.password !== this.state.passwordConfirm) {
         alert("Your passwords do not match");
       } else {
-        Axios.post("BandanaNana.us-east-1.elasticbeanstalk.com/checkforuser", {
+        Axios.post("https://BandanaNana.us-east-1.elasticbeanstalk.com/checkforuser", {
           username: this.state.username,
         })
           .then((results) => {
             if (results.data === "NotAvailable") {
               alert("The username you've chosen already exists");
             } else {
-              Axios.post("BandanaNana.us-east-1.elasticbeanstalk.com/addUser", {
+              Axios.post("https://BandanaNana.us-east-1.elasticbeanstalk.com/addUser", {
                 username: this.state.username,
                 password: this.state.password,
               }).then(() => {
@@ -56,7 +56,7 @@ class Signin extends React.Component {
           });
       }
     } else {
-      Axios.post("BandanaNana.us-east-1.elasticbeanstalk.com/login", {
+      Axios.post("https://BandanaNana.us-east-1.elasticbeanstalk.com/login", {
         username: this.state.username,
         password: this.state.password,
       })
