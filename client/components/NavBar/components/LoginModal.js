@@ -1,6 +1,6 @@
 import React from "react";
 
-const LoginModal = ({ show, close, readUser, readPass }) => {
+const LoginModal = ({ show, close, readUser, readPass, submit }) => {
   if (show) {
     return (
       <div className="signup-modal">
@@ -41,7 +41,14 @@ const LoginModal = ({ show, close, readUser, readPass }) => {
             </div>
           </div>
           <div className="row text-center" style={{ paddingTop: "20px" }}>
-            <button className="btn  btn-primary">Submit</button>
+            <button
+              className="btn  btn-primary"
+              onClick={() => {
+                submit();
+              }}
+            >
+              Submit
+            </button>
             {"            "}
             <button
               className="btn btn-default"

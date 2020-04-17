@@ -56,4 +56,39 @@ const newUser = (username, password, callback) => {
   );
 };
 
-module.exports = { creatorInfo, getAlbumImages, fosterInfo, newUser };
+const checkForUser = (username, callback) => {
+  db.query(
+    `Select * from users where username = ?`,
+    username,
+    (err, results) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
+
+const logIn = (username, callback) => {
+  db.query(
+    `Select * from users where username = ?`,
+    username,
+    (err, results) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
+
+module.exports = {
+  creatorInfo,
+  getAlbumImages,
+  fosterInfo,
+  newUser,
+  checkForUser,
+  logIn,
+};

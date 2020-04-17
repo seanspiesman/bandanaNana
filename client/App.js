@@ -7,6 +7,7 @@ import Creator from "./components/Creator/Creator";
 import Materials from "./components/Materials/Materials";
 import Queue from "./components/Queue/Queue";
 import CurrentFosters from "./components/CurrentFosters/CurrentFosters";
+import Axios from "axios";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -22,6 +23,8 @@ export default class App extends React.Component {
       tabSelectIndex: 0,
       tabArray: ["Fosters", "Shop", "Materials", "Queue", "Album", "Creators"],
       queueInfo: [],
+      username: "",
+      loggedIn: false,
     };
   }
 
@@ -36,20 +39,32 @@ export default class App extends React.Component {
   }
 
   addToQueue(item) {
+    console.log(item);
+    Axios.post("/placeInQueue", { queue: item });
     this.setState({ queueInfo: [...this.state.queueInfo, [...item]] });
   }
 
+  loadQueue() {
+    Axios.get("queueItems").then((result) => {
+      console.log(result);
+    });
+  }
+
   removeFromQueue(index) {
-    console.log(index);
     var newQueue = this.state.queueInfo.slice();
     newQueue.splice(index, 1);
     this.setState({ queueInfo: newQueue });
   }
 
+  setUsername(username) {
+    this.setState({ username: this.state.username });
+    console.log(username);
+  }
+
   render() {
     return (
       <div className="container">
-        <NavBar />
+        <NavBar username={this.setUsername.bind(this)} />
         <Categories tabs={this.state.tabArray} tab={this.tabClick.bind(this)} />
         <CurrentFosters show={this.state.fosters} />
         <Shop show={this.state.shop} submit={this.addToQueue.bind(this)} />

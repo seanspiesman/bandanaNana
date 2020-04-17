@@ -3,7 +3,14 @@ const app = express();
 const port = 3000;
 const cors = require("cors");
 const path = require("path");
-const { getAlbumImages, creatorInfo, fosterInfo, newUser } = require("./db");
+const {
+  getAlbumImages,
+  creatorInfo,
+  fosterInfo,
+  newUser,
+  checkForUser,
+  logIn,
+} = require("./db");
 
 app.use(cors());
 app.use(express.json());
@@ -41,14 +48,46 @@ app.get("/fosterinfo", (req, res) => {
   });
 });
 
-app.post("/adduser/:id", (req, res) => {
-  console.log(req.body);
+app.post("/adduser", (req, res) => {
+  // console.log(req.body);
   newUser(req.body.username, req.body.password, (err, results) => {
     if (err) console.log(err);
     else {
       res.send(results);
     }
   });
+});
+
+app.post("/checkforuser", (req, res) => {
+  checkForUser(req.body.username, (err, results) => {
+    if (err) console.log(err);
+    else {
+      if (results.length === 0) {
+        res.send("Available");
+      } else {
+        res.send("NotAvailable");
+      }
+    }
+  });
+});
+
+app.post("/login", (req, res) => {
+  logIn(req.body.username, (err, results) => {
+    if (err) console.log(err);
+    else {
+      if (results[0].password === req.body.password) {
+        console.log("Success");
+        res.send("Success");
+      } else {
+        console.log("Failure");
+        res.send("Failure");
+      }
+    }
+  });
+});
+
+app.post("/placeInQueue", (req, res) => {
+  console.log(req.body.queue);
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));

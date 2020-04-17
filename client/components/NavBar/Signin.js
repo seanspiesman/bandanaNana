@@ -29,17 +29,47 @@ class Signin extends React.Component {
   }
 
   onSubmit() {
-    if (this.state.passwordConfirm.length !== 0) {
+    if (this.state.passwordConfirm.length !== 0 && this.state.showSignUpModal) {
       if (this.state.password !== this.state.passwordConfirm) {
-        alert("Your Passwords do not match");
+        alert("Your passwords do not match");
       } else {
-        Axios.post("/addUser/user", {
+        Axios.post("/checkforuser", {
           username: this.state.username,
-          password: this.state.password,
-        }).then;
-        console.log("Account Created"); 
+        })
+          .then((results) => {
+            if (results.data === "NotAvailable") {
+              alert("The username you've chosen already exists");
+            } else {
+              Axios.post("/addUser", {
+                username: this.state.username,
+                password: this.state.password,
+              }).then(() => {
+                this.closeSignUpModal();
+                this.logIn();
+                this.props.username(this.state.username);
+                console.log("Account Created");
+              });
+            }
+          })
+          .catch((err) => {
+            console.log("Error");
+          });
       }
     } else {
+      Axios.post("/login", {
+        username: this.state.username,
+        password: this.state.password,
+      })
+        .then((results) => {
+          if (results.data === "Success") {
+            this.logIn();
+            this.props.username(this.state.username);
+            this.closeLoginModal();
+          }
+        })
+        .catch(() => {
+          console.log("Error");
+        });
     }
   }
 
@@ -63,6 +93,10 @@ class Signin extends React.Component {
     this.setState({ LoggedIn: false });
   }
 
+  logIn() {
+    this.setState({ LoggedIn: true });
+  }
+
   render() {
     return (
       <>
@@ -83,7 +117,7 @@ class Signin extends React.Component {
           </div>
         </nav>
         <SignUp
-          Submit={this.onSubmit.bind(this)}
+          submit={this.onSubmit.bind(this)}
           readUser={this.User.bind(this)}
           readPass={this.Pass.bind(this)}
           passConfirm={this.PassCon.bind(this)}
@@ -91,7 +125,7 @@ class Signin extends React.Component {
           close={this.closeSignUpModal.bind(this)}
         />
         <Login
-          // onSubmit={}
+          submit={this.onSubmit.bind(this)}
           readUser={this.User.bind(this)}
           readPass={this.Pass.bind(this)}
           show={this.state.showLoginModal}

@@ -6,7 +6,7 @@ const SignInModal = ({
   readUser,
   readPass,
   passConfirm,
-  Submit,
+  submit,
 }) => {
   if (show) {
     return (
@@ -64,7 +64,7 @@ const SignInModal = ({
             <button
               className="btn btn-primary"
               onClick={() => {
-                Submit();
+                submit();
               }}
             >
               Submit
