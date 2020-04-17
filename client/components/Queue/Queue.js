@@ -18,6 +18,7 @@ class Queue extends React.Component {
     if (this.props.user === "admin") {
       this.adminInfo();
     }
+    this.buildInfo();
   }
 
   adminInfo() {
@@ -50,7 +51,12 @@ class Queue extends React.Component {
       .catch(() => {
         console.log("error");
       });
-    Axios.get("http://bandananana.us-east-1.elasticbeanstalk.com/buildQueue").then((results) => {
+  }
+
+  buildInfo() {
+    Axios.get(
+      "http://bandananana.us-east-1.elasticbeanstalk.com/buildQueue"
+    ).then((results) => {
       if (this.state.buildQueue.length === 0) {
         this.setState({ buildQueue: results.data });
       }
@@ -60,9 +66,12 @@ class Queue extends React.Component {
   removeFromRequests(index) {
     var newQueue = this.state.totalQueue.slice();
     newQueue.splice(index, 1);
-    Axios.post("http://bandananana.us-east-1.elasticbeanstalk.com/placeInQueue", {
-      username: this.state.totalQueue[index].name,
-    })
+    Axios.post(
+      "http://bandananana.us-east-1.elasticbeanstalk.com/placeInQueue",
+      {
+        username: this.state.totalQueue[index].name,
+      }
+    )
       .then((results) => {
         this.setState({ totalQueue: newQueue });
       })
@@ -75,7 +84,9 @@ class Queue extends React.Component {
     var newState = this.state.buildQueue;
     console.log(this.state.totalQueue[index]);
     newState.push(this.state.totalQueue[index]);
-    Axios.post("http://bandananana.us-east-1.elasticbeanstalk.com/buildQueue", { newState });
+    Axios.post("http://bandananana.us-east-1.elasticbeanstalk.com/buildQueue", {
+      newState,
+    });
     this.setState({ buildQueue: newState }, () => {
       this.removeFromRequests(index);
     });
@@ -84,9 +95,12 @@ class Queue extends React.Component {
   removeFromBuild(index) {
     var newBuildQueue = this.state.buildQueue.slice();
     newBuildQueue.splice(index, 1);
-    Axios.post("http://bandananana.us-east-1.elasticbeanstalk.com/removeFromBuild", {
-      username: this.state.buildQueue[index].name,
-    })
+    Axios.post(
+      "http://bandananana.us-east-1.elasticbeanstalk.com/removeFromBuild",
+      {
+        username: this.state.buildQueue[index].name,
+      }
+    )
       .then((results) => {
         console.log(results);
         this.setState({ buildQueue: newBuildQueue });
@@ -156,6 +170,18 @@ class Queue extends React.Component {
             </div>
             <div className="col-md-6 queue-font">
               <h2>Build Queue</h2>
+              <ul>
+                {this.state.buildQueue.map((item, index) => {
+                  return (
+                    <BuildQueue
+                      item={item}
+                      index={index}
+                      key={index}
+                      remove={this.removeFromBuild.bind(this)}
+                    />
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </div>
