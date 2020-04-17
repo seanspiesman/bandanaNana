@@ -1,12 +1,16 @@
 import React from "react";
 
-const SignedIn = ({ loggedIn, signup, loginBtn, logout }) => {
+const SignedIn = ({ loggedIn, signup, loginBtn, logout, cart }) => {
   if (loggedIn) {
     return (
       <ul className="nav navbar-nav navbar-right">
-        <li>
+        <li
+          onClick={() => {
+            cart(3);
+          }}
+        >
           <a href="#">
-            <span className="glyphicon glyphicon-cog"></span> Settings
+            <span className="glyphicon glyphicon-shopping-cart"></span> Queue
           </a>
         </li>
         <li>

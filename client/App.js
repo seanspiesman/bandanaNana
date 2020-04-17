@@ -96,7 +96,10 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <NavBar username={this.setUsername.bind(this)} />
+        <NavBar
+          username={this.setUsername.bind(this)}
+          openQueue={this.tabClick.bind(this)}
+        />
         <Categories tabs={this.state.tabArray} tab={this.tabClick.bind(this)} />
         <CurrentFosters show={this.state.fosters} />
         <Shop show={this.state.shop} submit={this.addToQueue.bind(this)} />

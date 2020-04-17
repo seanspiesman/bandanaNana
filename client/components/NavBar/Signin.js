@@ -33,17 +33,23 @@ class Signin extends React.Component {
       if (this.state.password !== this.state.passwordConfirm) {
         alert("Your passwords do not match");
       } else {
-        Axios.post("http://bandananana.us-east-1.elasticbeanstalk.com/checkforuser", {
-          username: this.state.username,
-        })
+        Axios.post(
+          "http://bandananana.us-east-1.elasticbeanstalk.com/checkforuser",
+          {
+            username: this.state.username,
+          }
+        )
           .then((results) => {
             if (results.data === "NotAvailable") {
               alert("The username you've chosen already exists");
             } else {
-              Axios.post("http://bandananana.us-east-1.elasticbeanstalk.com/addUser", {
-                username: this.state.username,
-                password: this.state.password,
-              }).then(() => {
+              Axios.post(
+                "http://bandananana.us-east-1.elasticbeanstalk.com/addUser",
+                {
+                  username: this.state.username,
+                  password: this.state.password,
+                }
+              ).then(() => {
                 this.logIn();
                 this.props.username(this.state.username);
                 console.log("Account Created");
@@ -111,6 +117,7 @@ class Signin extends React.Component {
               </a>
             </div>
             <SignedIn
+              cart={this.props.openQueue.bind(this)}
               show={this.state.showLogin}
               loggedIn={this.state.LoggedIn}
               signup={this.openSignUpModal.bind(this)}
