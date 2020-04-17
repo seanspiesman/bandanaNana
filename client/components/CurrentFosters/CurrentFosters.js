@@ -11,7 +11,7 @@ class CurrentFosters extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get("/fosterinfo")
+    Axios.get("BandanaNana.us-east-1.elasticbeanstalk.com/fosterinfo")
       .then((results) => {
         this.setState({ creators: results.data });
       })

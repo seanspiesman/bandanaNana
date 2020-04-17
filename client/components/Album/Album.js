@@ -15,7 +15,7 @@ class Album extends React.Component {
 
   componentDidMount() {
     axios
-      .get("/albumImages")
+      .get("BandanaNana.us-east-1.elasticbeanstalk.com/albumImages")
       .then((response) => {
         this.setState({ imageArray: response.data });
       })
