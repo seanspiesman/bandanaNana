@@ -3,6 +3,7 @@ import YourQueue from "./components/YourQueue";
 import Axios from "axios";
 import TotalQueue from "./components/requestQueue";
 import BuildQueue from "./components/BuildQueue";
+import CBuild from "./components/CBuildQueue";
 
 class Queue extends React.Component {
   constructor(props) {
@@ -173,7 +174,7 @@ class Queue extends React.Component {
               <ul>
                 {this.state.buildQueue.map((item, index) => {
                   return (
-                    <BuildQueue
+                    <CBuild
                       item={item}
                       index={index}
                       key={index}
