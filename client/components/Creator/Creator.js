@@ -11,7 +11,7 @@ class Creator extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get("http://BandanaNana.us-east-1.elasticbeanstalk.com/creatorinfo")
+    Axios.get("http://bandananana.us-east-1.elasticbeanstalk.com/creatorinfo")
       .then((results) => {
         this.setState({ creators: results.data });
       })
