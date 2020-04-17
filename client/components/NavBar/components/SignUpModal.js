@@ -44,6 +44,7 @@ const SignInModal = ({
                 onChange={readPass}
                 className="form-control"
                 placeholder="Type Password here..."
+                type="password"
               />
             </div>
           </div>
@@ -57,6 +58,7 @@ const SignInModal = ({
                 onChange={passConfirm}
                 className="form-control"
                 placeholder="Type Password again"
+                type="password"
               />
             </div>
           </div>

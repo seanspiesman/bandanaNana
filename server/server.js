@@ -10,6 +10,8 @@ const {
   newUser,
   checkForUser,
   logIn,
+  loadQueue,
+  placeInQueue,
 } = require("./db");
 
 app.use(cors());
@@ -75,11 +77,15 @@ app.post("/login", (req, res) => {
   logIn(req.body.username, (err, results) => {
     if (err) console.log(err);
     else {
-      if (results[0].password === req.body.password) {
-        console.log("Success");
-        res.send("Success");
+      if (results.length !== 0) {
+        if (results[0].password === req.body.password) {
+          console.log("Success");
+          res.send("Success");
+        } else {
+          console.log("Failure");
+          res.send("Failure");
+        }
       } else {
-        console.log("Failure");
         res.send("Failure");
       }
     }
@@ -87,7 +93,23 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/placeInQueue", (req, res) => {
-  console.log(req.body.queue);
+  console.log(req.body);
+  placeInQueue(req.body.username, req.body.queue, (err, results) => {
+    if (err) console.log(err);
+    else {
+      console.log(results);
+    }
+  });
+  res.send();
+});
+
+app.get("/queueItems", (req, res) => {
+  loadQueue(req.query.id, (err, results) => {
+    if (err) res.send("Error");
+    else {
+      res.send(results[0].queue);
+    }
+  });
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));

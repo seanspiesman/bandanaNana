@@ -25,6 +25,7 @@ export default class App extends React.Component {
       queueInfo: [],
       username: "",
       loggedIn: false,
+      buildQueue: [],
     };
   }
 
@@ -39,26 +40,49 @@ export default class App extends React.Component {
   }
 
   addToQueue(item) {
-    console.log(item);
-    Axios.post("/placeInQueue", { queue: item });
-    this.setState({ queueInfo: [...this.state.queueInfo, [...item]] });
+    if (this.state.username.length !== 0) {
+      var newQueue = [...this.state.queueInfo, [...item]];
+      Axios.post("/placeInQueue", {
+        username: this.state.username,
+        queue: newQueue,
+      })
+        .then(() => {
+          console.log("worked");
+          this.setState({ queueInfo: [...this.state.queueInfo, [...item]] });
+        })
+        .catch("error");
+    } else {
+      console.log("failed");
+    }
   }
 
-  loadQueue() {
-    Axios.get("queueItems").then((result) => {
-      console.log(result);
+  loadQueue(username) {
+    Axios.get("/queueItems", {
+      params: {
+        id: username,
+      },
+    }).then((result) => {
+      if (result.data.length !== 0) this.setState({ queueInfo: result.data });
     });
   }
 
   removeFromQueue(index) {
     var newQueue = this.state.queueInfo.slice();
     newQueue.splice(index, 1);
-    this.setState({ queueInfo: newQueue });
+    Axios.post("/placeInQueue", {
+      username: this.state.username,
+      queue: newQueue,
+    })
+      .then(() => {
+        this.setState({ queueInfo: newQueue });
+      })
+      .catch("error");
   }
 
   setUsername(username) {
-    this.setState({ username: this.state.username });
-    console.log(username);
+    this.setState({ username }, () => {
+      this.loadQueue(username);
+    });
   }
 
   render() {
@@ -70,6 +94,7 @@ export default class App extends React.Component {
         <Shop show={this.state.shop} submit={this.addToQueue.bind(this)} />
         <Materials show={this.state.materials} />
         <Queue
+          user={this.state.username}
           show={this.state.queue}
           list={this.state.queueInfo}
           remove={this.removeFromQueue.bind(this)}

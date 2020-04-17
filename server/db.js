@@ -84,6 +84,34 @@ const logIn = (username, callback) => {
   );
 };
 
+const loadQueue = (username, callback) => {
+  db.query(
+    `Select * from users where username = ?`,
+    username,
+    (err, results) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
+
+const placeInQueue = (username, queue, callback) => {
+  var newQueue = JSON.stringify(queue);
+  db.query(
+    "Update users set queue = ? where username = ?",
+    [newQueue, username],
+    (err, results) => {
+      if (err) console.log(err);
+      else {
+        console.log(results);
+      }
+    }
+  );
+};
+
 module.exports = {
   creatorInfo,
   getAlbumImages,
@@ -91,4 +119,6 @@ module.exports = {
   newUser,
   checkForUser,
   logIn,
+  loadQueue,
+  placeInQueue,
 };

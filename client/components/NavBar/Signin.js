@@ -44,10 +44,10 @@ class Signin extends React.Component {
                 username: this.state.username,
                 password: this.state.password,
               }).then(() => {
-                this.closeSignUpModal();
                 this.logIn();
                 this.props.username(this.state.username);
                 console.log("Account Created");
+                this.closeSignUpModal();
               });
             }
           })
@@ -65,6 +65,8 @@ class Signin extends React.Component {
             this.logIn();
             this.props.username(this.state.username);
             this.closeLoginModal();
+          } else {
+            alert("Your Password or Username is Incorrect");
           }
         })
         .catch(() => {
@@ -91,6 +93,7 @@ class Signin extends React.Component {
 
   logOut() {
     this.setState({ LoggedIn: false });
+    window.location.reload();
   }
 
   logIn() {

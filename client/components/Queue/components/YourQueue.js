@@ -9,9 +9,8 @@ const YourQueue = ({ item, index, remove }) => {
           item[1].toLowerCase() +
           " for " +
           item[0].toLowerCase() +
-          ". Notes: " +
-          item[3] +
-          " "}{" "}
+          "."}{" "}
+        <small>{"Notes: " + item[3]}</small>
         <button
           className="btn btn-sm"
           onClick={() => {
