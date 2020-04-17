@@ -52,7 +52,7 @@ export default class App extends React.Component {
         })
         .catch("error");
     } else {
-      console.log("failed");
+      alert("Please Login To Continue");
     }
   }
 

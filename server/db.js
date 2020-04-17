@@ -112,6 +112,16 @@ const placeInQueue = (username, queue, callback) => {
   );
 };
 
+const totalQueue = (callback) => {
+  db.query("Select username, queue from users", (err, results) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
 module.exports = {
   creatorInfo,
   getAlbumImages,
@@ -121,4 +131,5 @@ module.exports = {
   logIn,
   loadQueue,
   placeInQueue,
+  totalQueue,
 };

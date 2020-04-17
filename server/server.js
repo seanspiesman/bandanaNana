@@ -12,6 +12,7 @@ const {
   logIn,
   loadQueue,
   placeInQueue,
+  totalQueue,
 } = require("./db");
 
 app.use(cors());
@@ -108,6 +109,17 @@ app.get("/queueItems", (req, res) => {
     if (err) res.send("Error");
     else {
       res.send(results[0].queue);
+    }
+  });
+});
+
+app.get("/allQueueItems", (req, res) => {
+  totalQueue((err, results) => {
+    if (err) {
+      console.log(err);
+      res.send("Error");
+    } else {
+      res.send(results);
     }
   });
 });

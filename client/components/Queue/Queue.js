@@ -7,7 +7,7 @@ class Queue extends React.Component {
     // this.props.show, this.props.list, this.props.remove, user
     super(props);
     this.state = {
-      totalQueue,
+      totalQueue: [],
     };
   }
 
