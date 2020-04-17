@@ -13,6 +13,9 @@ const {
   loadQueue,
   placeInQueue,
   totalQueue,
+  BuildQueue,
+  selectBQ,
+  removeFromBQ,
 } = require("./db");
 
 app.use(cors());
@@ -94,7 +97,6 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/placeInQueue", (req, res) => {
-  console.log(req.body);
   placeInQueue(req.body.username, req.body.queue, (err, results) => {
     if (err) console.log(err);
     else {
@@ -119,6 +121,37 @@ app.get("/allQueueItems", (req, res) => {
       console.log(err);
       res.send("Error");
     } else {
+      res.send(results);
+    }
+  });
+});
+
+app.post("/buildQueue", (req, res) => {
+  for (var user of req.body.newState) {
+    BuildQueue(user.name, JSON.stringify(user.queue), (err, results) => {
+      if (err) console.log(err);
+      else {
+        console.log(results);
+      }
+    });
+  }
+});
+
+app.get("/buildQueue", (req, res) => {
+  selectBQ((err, results) => {
+    if (err) console.log(err);
+    else {
+      res.send(results);
+    }
+  });
+});
+
+app.post("/removeFromBuild", (req, res) => {
+  console.log(req.body.username);
+  removeFromBQ(req.body.username, (err, results) => {
+    if (err) console.log(err);
+    else {
+      console.log(results);
       res.send(results);
     }
   });

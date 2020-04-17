@@ -44,7 +44,7 @@ const fosterInfo = (callback) => {
 
 const newUser = (username, password, callback) => {
   db.query(
-    `Insert into users (username, password) values (?, ?) `,
+    `Insert into users (username, password) values (?, ?)`,
     [username, password],
     (err, results) => {
       if (err) {
@@ -122,6 +122,44 @@ const totalQueue = (callback) => {
   });
 };
 
+const BuildQueue = (user, queue, callback) => {
+  db.query(
+    "Insert into buildqueue (username, item) values (?, ?)",
+    [user, queue],
+    (err, results) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
+
+const selectBQ = (callback) => {
+  db.query("Select * from buildqueue", (err, results) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+const removeFromBQ = (username, callback) => {
+  db.query(
+    "delete from buildqueue where name = ?",
+    username,
+    (err, results) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
+
 module.exports = {
   creatorInfo,
   getAlbumImages,
@@ -132,4 +170,7 @@ module.exports = {
   loadQueue,
   placeInQueue,
   totalQueue,
+  BuildQueue,
+  selectBQ,
+  removeFromBQ,
 };

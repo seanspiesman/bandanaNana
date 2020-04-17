@@ -1,8 +1,9 @@
 import React from "react";
 
 const BuildQueue = ({ item, remove, index }) => {
-  console.log(item.queue);
-
+  if (typeof item.queue === "string") {
+    item.queue = JSON.parse(item.queue);
+  }
   if (item.queue.length === 1) {
     return (
       <>

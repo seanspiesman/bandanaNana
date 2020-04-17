@@ -21,29 +21,38 @@ class Queue extends React.Component {
   }
 
   adminInfo() {
-    Axios.get("/allQueueItems").then((result) => {
-      var Qarray = [];
-      for (var i = 0; i < result.data.length; i++) {
-        var personObject = {};
-        var personQueue = [];
+    Axios.get("/allQueueItems")
+      .then((result) => {
+        var Qarray = [];
+        for (var i = 0; i < result.data.length; i++) {
+          var personObject = {};
+          var personQueue = [];
+          if (
+            result.data[i].queue !== null &&
+            result.data[i].queue.length !== 0
+          ) {
+            personQueue = JSON.parse(result.data[i].queue);
+            personObject.name = result.data[i].username;
+            personObject.queue = personQueue;
+          }
+          if (Object.keys(personObject).length !== 0) {
+            Qarray.push(personObject);
+          }
+        }
         if (
-          result.data[i].queue !== null &&
-          result.data[i].queue.length !== 0
+          this.state.totalQueue.length === 0 &&
+          this.state.buildQueue.length === 0 &&
+          this.state.changeHandler !== 1
         ) {
-          personQueue = JSON.parse(result.data[i].queue);
-          personObject.name = result.data[i].username;
-          personObject.queue = personQueue;
+          this.setState({ totalQueue: Qarray, changeHandler: 1 });
         }
-        if (Object.keys(personObject).length !== 0) {
-          Qarray.push(personObject);
-        }
-      }
-      if (
-        this.state.totalQueue.length === 0 &&
-        this.state.buildQueue.length === 0 &&
-        this.state.changeHandler !== 1
-      ) {
-        this.setState({ totalQueue: Qarray, changeHandler: 1 });
+      })
+      .catch(() => {
+        console.log("error");
+      });
+    Axios.get("/buildQueue").then((results) => {
+      if (this.state.buildQueue.length === 0) {
+        this.setState({ buildQueue: results.data });
       }
     });
   }
@@ -51,20 +60,40 @@ class Queue extends React.Component {
   removeFromRequests(index) {
     var newQueue = this.state.totalQueue.slice();
     newQueue.splice(index, 1);
-    this.setState({ totalQueue: newQueue });
+    Axios.post("/placeInQueue", {
+      username: this.state.totalQueue[index].name,
+    })
+      .then((results) => {
+        this.setState({ totalQueue: newQueue });
+      })
+      .catch((err) => {
+        console.log("error");
+      });
   }
 
   addBuildQueue(index) {
     var newState = this.state.buildQueue;
     console.log(this.state.totalQueue[index]);
     newState.push(this.state.totalQueue[index]);
+    Axios.post("/buildQueue", { newState });
     this.setState({ buildQueue: newState }, () => {
       this.removeFromRequests(index);
     });
   }
 
   removeFromBuild(index) {
-    console.log(index);
+    var newBuildQueue = this.state.buildQueue.slice();
+    newBuildQueue.splice(index, 1);
+    Axios.post("/removeFromBuild", {
+      username: this.state.buildQueue[index].name,
+    })
+      .then((results) => {
+        console.log(results);
+        this.setState({ buildQueue: newBuildQueue });
+      })
+      .catch((err) => {
+        console.log("error");
+      });
   }
 
   render() {
