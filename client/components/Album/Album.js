@@ -20,7 +20,7 @@ class Album extends React.Component {
         this.setState({ imageArray: response.data });
       })
       .catch((err) => {
-        console.log("Error");
+        console.log(err);
       });
   }
   itemZoomClick(item) {

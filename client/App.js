@@ -82,8 +82,8 @@ export default class App extends React.Component {
       .then(() => {
         this.setState({ queueInfo: newQueue });
       })
-      .catch(() => {
-        console.log("Error");
+      .catch((err) => {
+        console.log(err);
       });
   }
 

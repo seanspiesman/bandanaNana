@@ -16,7 +16,7 @@ class CurrentFosters extends React.Component {
         this.setState({ creators: results.data });
       })
       .catch((err) => {
-        console.log("error");
+        console.log(err);
       });
   }
 

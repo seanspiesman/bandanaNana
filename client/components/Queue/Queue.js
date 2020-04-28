@@ -55,13 +55,15 @@ class Queue extends React.Component {
   }
 
   buildInfo() {
-    Axios.get(
-      "http://bandananana.us-east-1.elasticbeanstalk.com/buildQueue"
-    ).then((results) => {
-      if (this.state.buildQueue.length === 0) {
-        this.setState({ buildQueue: results.data });
-      }
-    });
+    Axios.get("http://bandananana.us-east-1.elasticbeanstalk.com/buildQueue")
+      .then((results) => {
+        if (this.state.buildQueue.length === 0) {
+          this.setState({ buildQueue: results.data });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   removeFromRequests(index) {
@@ -77,7 +79,7 @@ class Queue extends React.Component {
         this.setState({ totalQueue: newQueue });
       })
       .catch((err) => {
-        console.log("error");
+        console.log(err);
       });
   }
 
@@ -87,10 +89,15 @@ class Queue extends React.Component {
     newState.push(this.state.totalQueue[index]);
     Axios.post("http://bandananana.us-east-1.elasticbeanstalk.com/buildQueue", {
       newState,
-    });
-    this.setState({ buildQueue: newState }, () => {
-      this.removeFromRequests(index);
-    });
+    })
+      .then((result) => {
+        this.setState({ buildQueue: newState }, () => {
+          this.removeFromRequests(index);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   removeFromBuild(index) {
@@ -107,7 +114,7 @@ class Queue extends React.Component {
         this.setState({ buildQueue: newBuildQueue });
       })
       .catch((err) => {
-        console.log("error");
+        console.log(err);
       });
   }
 

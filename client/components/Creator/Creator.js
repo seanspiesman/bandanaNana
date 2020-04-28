@@ -16,7 +16,7 @@ class Creator extends React.Component {
         this.setState({ creators: results.data });
       })
       .catch((err) => {
-        console.log("error");
+        console.log(err);
       });
   }
 
@@ -45,4 +45,3 @@ export default Creator;
 // I was sitting at work one day, staring at picutres of my children when I realize they needed some extra pizzaz! They are goodest girls, and they want to show off their products to the world!
 
 // All proceeds go to Austin Pets Alive!
-

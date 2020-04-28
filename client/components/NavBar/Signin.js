@@ -49,12 +49,16 @@ class Signin extends React.Component {
                   username: this.state.username,
                   password: this.state.password,
                 }
-              ).then(() => {
-                this.logIn();
-                this.props.username(this.state.username);
-                console.log("Account Created");
-                this.closeSignUpModal();
-              });
+              )
+                .then(() => {
+                  this.logIn();
+                  this.props.username(this.state.username);
+                  console.log("Account Created");
+                  this.closeSignUpModal();
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
             }
           })
           .catch((err) => {
@@ -76,7 +80,7 @@ class Signin extends React.Component {
           }
         })
         .catch(() => {
-          console.log("Error");
+          console.log(err);
         });
     }
   }
