@@ -104,9 +104,10 @@ const placeInQueue = (username, queue, callback) => {
     "Update users set queue = ? where username = ?",
     [newQueue, username],
     (err, results) => {
-      if (err) console.log(err);
-      else {
-        console.log(results);
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
       }
     }
   );

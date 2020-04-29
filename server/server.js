@@ -66,8 +66,10 @@ app.post("/adduser", (req, res) => {
 
 app.post("/checkforuser", (req, res) => {
   checkForUser(req.body.username, (err, results) => {
-    if (err) console.log(err);
-    else {
+    if (err) {
+      console.log(err);
+      res.send();
+    } else {
       if (results.length === 0) {
         res.send("Available");
       } else {
@@ -79,14 +81,14 @@ app.post("/checkforuser", (req, res) => {
 
 app.post("/login", (req, res) => {
   logIn(req.body.username, (err, results) => {
-    if (err) console.log(err);
-    else {
+    if (err) {
+      console.log(err);
+      res.send();
+    } else {
       if (results.length !== 0) {
         if (results[0].password === req.body.password) {
-          console.log("Success");
           res.send("Success");
         } else {
-          console.log("Failure");
           res.send("Failure");
         }
       } else {
@@ -98,8 +100,10 @@ app.post("/login", (req, res) => {
 
 app.post("/placeInQueue", (req, res) => {
   placeInQueue(req.body.username, req.body.queue, (err, results) => {
-    if (err) console.log(err);
-    else {
+    if (err) {
+      console.log(err);
+      res.send();
+    } else {
       console.log(results);
     }
   });
@@ -108,8 +112,10 @@ app.post("/placeInQueue", (req, res) => {
 
 app.get("/queueItems", (req, res) => {
   loadQueue(req.query.id, (err, results) => {
-    if (err) res.send("Error");
-    else {
+    if (err) {
+      console.log(err);
+      res.send();
+    } else {
       res.send(results[0].queue);
     }
   });
@@ -129,8 +135,10 @@ app.get("/allQueueItems", (req, res) => {
 app.post("/buildQueue", (req, res) => {
   for (var user of req.body.newState) {
     BuildQueue(user.name, JSON.stringify(user.queue), (err, results) => {
-      if (err) console.log(err);
-      else {
+      if (err) {
+        onsole.log(err);
+        res.send();
+      } else {
         console.log(results);
       }
     });
@@ -139,19 +147,21 @@ app.post("/buildQueue", (req, res) => {
 
 app.get("/buildQueue", (req, res) => {
   selectBQ((err, results) => {
-    if (err) console.log(err);
-    else {
+    if (err) {
+      console.log(err);
+      res.send();
+    } else {
       res.send(results);
     }
   });
 });
 
 app.post("/removeFromBuild", (req, res) => {
-  console.log(req.body.username);
   removeFromBQ(req.body.username, (err, results) => {
-    if (err) console.log(err);
-    else {
-      console.log(results);
+    if (err) {
+      console.log(err);
+      res.send();
+    } else {
       res.send(results);
     }
   });
