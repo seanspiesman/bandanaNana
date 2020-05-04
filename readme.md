@@ -1,10 +1,10 @@
 # Welcome to Bandana Nana!
 
-Do you love your dog? How much? Do you love other animals? If you want to support Austin Pets Alive and your favorite fosters head over to the shop page to make a donation and recieve a hand sewn bandana. 
+Do you love your dog? How much? Do you love other animals? If you want to support Austin Pets Alive and your favorite fosters head over to the shop page to make a donation and recieve a hand sewn bandana.
 
 Visit our website here: http://bandananana.us-east-1.elasticbeanstalk.com/
 
-I was given only a few days to put this project together and using client input, we created a simple to use application that fulfills the requirments of the client. 
+I was given only a few days to put this project together and using client input, we created a simple to use application that fulfills the requirments of the client.
 
 I chose a monolithic architecture. Herein the client and I have discussed the user stories built, technology stack utilized, instructions for getting started, and our work flow.
 
@@ -19,17 +19,16 @@ I chose a monolithic architecture. Herein the client and I have discussed the us
 # Demo
 
 <img src='https://thumbs.gfycat.com/ElderlyScornfulHochstettersfrog-size_restricted.gif' width="300px">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src='https://thumbs.gfycat.com/AccomplishedIlliterateErne-size_restricted.gif' width="300px">
+&nbsp;&nbsp;
 <img src='https://thumbs.gfycat.com/CompleteLeadingDwarfrabbit-size_restricted.gif' width="300px">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src='https://thumbs.gfycat.com/SlimPositiveCat-size_restricted.gif' width="300px">
 
 # User Stories
 
 ## Implemented
 
-Based on the request of our client, we built the following user stores:
+Based on the request of the client, I built the following user stores:
 
 - As a user, I want to see all fosters when I visit the site
 - As a user, I want to be able to create an account
@@ -110,7 +109,7 @@ npm run start
 # Wire Frames
 
 <span>
-  <p>The following are wire frames for the landing page, sign up page, client dashboard, and performer dashboard:</p>
+  <p>The following are wire frames for the different tabs throughout the website:</p>
    <img src ="https://lh3.googleusercontent.com/nHkYL1MfjSD5HBI8n4OScAem1sfosUzUdLkZ6pPBZHWT_Nms2zz2gCtMm02Kb65teW0my85WyhKEcu2iVpL15UmbucQYREwhjHLzx4VbX0Zm0whZ31dwQS-j-2IYY3I5RRIkGuA25L0=w340-h323-no" height=200>
    <img src="https://lh3.googleusercontent.com/ekvT5iAm_wRTGpq2UgJVdYn7PuGxpDVdx2l2twfXqify0RVgK1DgM6x1RMwtlL9_7hRC4DdLiNv40ICA8OYlioRM1D2kkQhSu5gYGHOqe-KPeXWgt1e4tQNgFAStKjyIPyrgSXOW-JY=w1145-h797-no" height=200>
    <img src="https://lh3.googleusercontent.com/llRuHPfU9eJMhwrmXxu7dCdqa55O8hE8KhfS27V6dDeL_AG-1lkFt7E1XESkXxrmmI4NqLV28xoPVBJkcSVlUsLe6YyVMNz60R6ygBNnALYN7HfGr0Ej6A8BoBtiEsbCKSqH0X0wnqs=w1184-h610-no" height=200>
