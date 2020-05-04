@@ -136,7 +136,7 @@ app.post("/buildQueue", (req, res) => {
   for (var user of req.body.newState) {
     BuildQueue(user.name, JSON.stringify(user.queue), (err, results) => {
       if (err) {
-        onsole.log(err);
+        console.log(err);
         res.send();
       } else {
         console.log(results);
