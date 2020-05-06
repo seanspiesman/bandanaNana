@@ -25,8 +25,10 @@ app.use(express.static(path.join(__dirname, "../dist")));
 
 app.get("/albumImages", (req, res) => {
   getAlbumImages((err, results) => {
-    if (err) console.log(err);
-    else {
+    if (err) {
+      res.send();
+      console.log(err);
+    } else {
       var imageArr = [];
       for (var i = 0; i < results.length; i++) {
         imageArr.push(results[i].image);
@@ -38,8 +40,10 @@ app.get("/albumImages", (req, res) => {
 
 app.get("/creatorinfo", (req, res) => {
   creatorInfo((err, results) => {
-    if (err) console.log(err);
-    else {
+    if (err) {
+      console.log(err);
+      res.send();
+    } else {
       res.send(results);
     }
   });
@@ -47,8 +51,10 @@ app.get("/creatorinfo", (req, res) => {
 
 app.get("/fosterinfo", (req, res) => {
   fosterInfo((err, results) => {
-    if (err) console.log(err);
-    else {
+    if (err) {
+      console.log(err);
+      res.send();
+    } else {
       res.send(results);
     }
   });
@@ -57,8 +63,10 @@ app.get("/fosterinfo", (req, res) => {
 app.post("/adduser", (req, res) => {
   // console.log(req.body);
   newUser(req.body.username, req.body.password, (err, results) => {
-    if (err) console.log(err);
-    else {
+    if (err) {
+      console.log(err);
+      res.send();
+    } else {
       res.send(results);
     }
   });
@@ -105,9 +113,9 @@ app.post("/placeInQueue", (req, res) => {
       res.send();
     } else {
       console.log(results);
+      res.send();
     }
   });
-  res.send();
 });
 
 app.get("/queueItems", (req, res) => {

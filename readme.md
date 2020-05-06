@@ -23,6 +23,7 @@ I chose a monolithic architecture. Herein the client and I have discussed the us
 <img src='https://thumbs.gfycat.com/AccomplishedIlliterateErne-size_restricted.gif' width="300px">
 &nbsp;&nbsp;
 <img src='https://thumbs.gfycat.com/CompleteLeadingDwarfrabbit-size_restricted.gif' width="300px">
+&nbsp;&nbsp;
 <img src='https://thumbs.gfycat.com/SlimPositiveCat-size_restricted.gif' width="300px">
 
 # User Stories
