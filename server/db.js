@@ -1,16 +1,33 @@
 const mysql = require("mysql");
 
-var db = mysql.createConnection({
+var db = mysql.createPool({
   host: "34.70.126.133",
   user: "root",
   password: "password",
   database: "bandananana",
 });
 
-db.connect(function (err) {
-  if (err) console.log(err);
-  console.log("Connected to DB!");
-});
+// db.connect(function (err) {
+//   if (err) console.log(err);
+//   console.log("Connected to DB!");
+// });
+
+// function handleDisconnect() {
+//   db.connect(function (err) {
+//     if (err) {
+//       console.log("error when connecting to db:", err);
+//       setTimeout(handleDisconnect, 2000);
+//     }
+//   });
+//   db.on("error", function (err) {
+//     console.log("db error", err);
+//     if (err.code === "PROTOCOL_CONNECTION_LOST") {
+//       handleDisconnect();
+//     } else {
+//       throw err;
+//     }
+//   });
+// }
 
 const getAlbumImages = (callback) => {
   db.query(`Select * from images`, (err, results) => {
